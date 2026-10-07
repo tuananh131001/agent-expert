@@ -1,0 +1,8 @@
+{
+  "name": "agent-expert",
+  "private": true,
+  "keywords": ["pi-package"],
+  "pi": {
+    "skills": ["./skills"]
+  }
+}

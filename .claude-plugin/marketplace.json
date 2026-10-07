@@ -1,0 +1,12 @@
+{
+  "name": "agent-expert",
+  "owner": { "name": "tuananh131001" },
+  "metadata": { "description": "Personal skills shared across Claude Code, Codex and Pi" },
+  "plugins": [
+    {
+      "name": "agent-expert",
+      "source": "./",
+      "description": "Personal skills shared across Claude Code, Codex and Pi"
+    }
+  ]
+}
