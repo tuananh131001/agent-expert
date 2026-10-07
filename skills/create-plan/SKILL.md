@@ -26,9 +26,15 @@ Status: <pending|in_progress|done>
 ## Goal
 <what this task achieves and why, 1-3 sentences>
 
-## Tasks
+## What Changes (Human Read)
+<describe chaged behavior here>
+
+## Tasks (For AI Agents to read)
 - [ ] <concrete, verifiable todo>
 - [ ] ...
+
+## Specs
+<List test cases here and easy for human read>
 
 ## Key Results
 - <measurable outcome that shows the goal is met>
