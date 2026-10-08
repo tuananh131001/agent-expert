@@ -12,7 +12,7 @@ All scripts are in `scripts/` next to this file. Put downloads and intermediate 
 ## 1. Find the public audio
 
 ```bash
-python3 scripts/find_audio.py "<episode url>"            # Spotify / Apple / RSS / .mp3
+python3 scripts/find_audio.py "<episode url>"            # Spotify / Apple / RSS / show website / .mp3
 python3 scripts/find_audio.py "<rss feed url>" --title "episode title words"
 ```
 

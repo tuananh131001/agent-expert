@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Resolve a podcast episode link (Spotify, Apple Podcasts, RSS feed, or direct audio URL)
-to its public audio file by way of the show's RSS feed.
+"""Resolve a podcast episode link (Spotify, Apple Podcasts, RSS feed, a show's own episode web page,
+or direct audio URL) to its public audio file by way of the show's RSS feed.
 
 Usage: find_audio.py <url> [--title "episode title hint"]
 Prints JSON: {show, title, pub_date, audio_url, feed_url, description}
@@ -85,6 +85,41 @@ def match(feed_url, title_hint):
     return best
 
 
+def web_page(url, page, title_hint):
+    # A show's own episode page: read the episode title from its meta tags, then find the
+    # episode in the iTunes catalog, which also gives the show's real podcast feed.
+    title = title_hint
+    if not title:
+        og = re.search(r'<meta property="og:title" content="([^"]*)"', page)
+        m = og or re.search(r"<title>(.*?)</title>", page, re.S)
+        title = html.unescape(m.group(1)).strip() if m else ""
+        site = re.search(r'<meta property="og:site_name" content="([^"]*)"', page)
+        if site:  # "Episode Title - Site Name" -> "Episode Title"
+            suffix = re.escape(html.unescape(site.group(1)).strip())
+            title = re.sub(r"\s*[-|\u2013\u2014:]\s*" + suffix + r"\s*$", "", title)
+    if not title:
+        sys.exit("Could not read an episode title from the page; pass the RSS feed URL with --title instead.")
+    words = set(norm(title).split())
+
+    def score(r):
+        # A user's hint must be fully contained in the episode title; a page title must
+        # largely coincide with it, so a generic page doesn't match some random episode.
+        track = set(norm(r.get("trackName")).split())
+        return len(words & track) / len(words if title_hint else words | track)
+
+    results = [r for r in itunes("search?" + urllib.parse.urlencode(
+        {"term": title, "entity": "podcastEpisode", "limit": 10})) if r.get("feedUrl")]
+    best = max(results, key=score, default=None)
+    if best and score(best) >= (1 if title_hint else 0.6):
+        return match(best["feedUrl"], best["trackName"])
+    audio = re.search(r'https?://[^"\'\s<>]+\.(?:mp3|m4a)(?:\?[^"\'\s<>]*)?', page)
+    if audio:
+        return {"show": None, "title": title, "pub_date": None, "audio_url": html.unescape(audio.group(0)),
+                "feed_url": None, "description": ""}
+    sys.exit(f"Could not find episode {title!r} in the iTunes catalog or an audio link on the page; "
+             "pass the show's RSS feed URL with --title instead.")
+
+
 def main():
     args = sys.argv[1:]
     if not args:
@@ -111,8 +146,12 @@ def main():
                     break
         feed = itunes(f"lookup?id={show_id}")[0]["feedUrl"]
         out = match(feed, title_hint)
-    else:  # assume an RSS feed URL
-        out = match(url, title_hint)
+    else:  # an RSS feed, or a show's own episode web page
+        page = fetch(url)
+        if re.match(r"\s*(<\?xml|<rss|<feed)", page):
+            out = match(url, title_hint)
+        else:
+            out = web_page(url, page, title_hint)
 
     print(json.dumps(out, indent=2, ensure_ascii=False))
 
