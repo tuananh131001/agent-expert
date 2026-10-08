@@ -17,7 +17,7 @@ Instruction: $ARGUMENTS
    (`AskUserQuestion` in Claude Code, `ask_user_question` in Pi); otherwise ask in chat
    and wait for the answer. Ask only about decisions that change the plan.
 3. Use grilling skill to clarify the user's intention and the scope and the size(tiny - small - medium - large - very large: include the describe how the size) of the work 
-3. Write `docs/<task-name>/PLAN.md` using exactly this structure:
+4. Write `docs/<task-name>/PLAN.md` using exactly this structure:
 
 ```markdown
 # <Task title>
@@ -49,4 +49,4 @@ Status: <pending|in_progress|done>
 - ...
 ```
 
-4. Reply with the file path and a one-paragraph summary.
+5. Reply with the file path and a one-paragraph summary.
