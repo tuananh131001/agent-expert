@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{Episode title}}</title>
+<style>
+  @page { size: A4; margin: 22mm 20mm 22mm 20mm; }
+  :root { --ink: #1d1d1f; --muted: #6b6b70; --accent: #8a2b1c; --rule: #d9d6d0; }
+  html { font-family: "Noto Serif", Georgia, serif; color: var(--ink); background: #fff; }
+  body { max-width: 680px; margin: 0 auto; font-size: 11pt; line-height: 1.6; }
+  .kicker { font-family: sans-serif; font-size: 8.5pt; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px; }
+  h1 { font-size: 25pt; line-height: 1.15; margin: 0 0 10px; }
+  .dek { font-size: 13pt; color: var(--muted); font-style: italic; margin: 0 0 14px; }
+  .meta { font-family: sans-serif; font-size: 8.5pt; color: var(--muted); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 7px 0; margin-bottom: 22px; }
+  h2 { font-size: 14.5pt; margin: 26px 0 8px; color: var(--accent); break-after: avoid; }
+  p { margin: 0 0 11px; text-align: justify; hyphens: auto; orphans: 3; widows: 3; }
+  blockquote { margin: 16px 0; padding: 4px 0 4px 16px; border-left: 3px solid var(--accent); font-style: italic; color: #333; break-inside: avoid; }
+  dl { margin: 6px 0 14px; }
+  dt { font-weight: bold; margin-top: 7px; break-after: avoid; }
+  dd { margin: 0 0 0 16px; }
+  .box { background: #f6f4ef; border: 1px solid var(--rule); padding: 12px 16px; margin: 18px 0; break-inside: avoid; }
+  .box p:last-child { margin-bottom: 0; }
+  .note { font-family: sans-serif; font-size: 8.5pt; color: var(--muted); border-top: 1px solid var(--rule); margin-top: 28px; padding-top: 10px; }
+  .note p { text-align: left; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+<p class="kicker">{{SHOW NAME}} · {{FORMAT: Interview / Solo episode / Panel}}</p>
+<h1>{{Episode title}}</h1>
+<p class="dek">{{One or two sentence standfirst: who is speaking and the core argument.}}</p>
+<div class="meta">Adapted from the episode of <em>{{Show}}</em> released {{date}} · Host: {{host}} · Guest: {{guest}}</div>
+</header>
+
+<p>{{Opening: the host's framing of why this episode matters.}}</p>
+
+<h2>{{Section heading for segment 1}}</h2>
+<p>{{Prose...}}</p>
+
+<!-- Optional components:
+<dl><dt>Term</dt><dd>Definition</dd></dl>
+<div class="box"><p><strong>Key claim:</strong> ...</p></div>
+<blockquote>A short, striking quote.</blockquote>
+-->
+
+<div class="note">
+<p>This article is an editorial adaptation of a podcast conversation, written in prose from an automated transcript. It follows the episode's structure and arguments but paraphrases rather than reproducing the dialogue verbatim. Statements about individuals and organizations reflect the speakers' views as expressed in the episode. Some names and titles were inferred from imperfect speech recognition and corrected where they could be identified.</p>
+</div>
+
+</body>
+</html>

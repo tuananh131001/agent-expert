@@ -20,3 +20,4 @@ Re-run to update.
 ## Skills
 
 - `create-plan` — writes `docs/<task-name>/PLAN.md` (Goal, Tasks, Key Results)
+- `podcast-to-article` — turns a podcast episode (Spotify / Apple / RSS / audio link) into a long-form article as PDF + EPUB. Transcribes locally with Whisper; needs `python3`, `ffmpeg`, `pandoc`, `pdftoppm` (poppler) and `agent-browser`
