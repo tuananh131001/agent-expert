@@ -23,11 +23,17 @@ Instruction: $ARGUMENTS
 
 Status: <pending|in_progress|done>
 
-## Goal
-<what this task achieves and why, 1-3 sentences>
+## Functional Requirement
+<use format user has ability to...>
 
-## What Changes (Human Read)
-<describe chaged behavior here>
+## Non-functional Requirement
+<consider the application CAP Theorums, Low Latency, Scablebility>
+
+## Core Models
+<input the erd diagram here>
+
+## High-level diagram
+<use mermaid js to draw the high levels of diagrams>
 
 ## Tasks (For AI Agents to read)
 - [ ] <concrete, verifiable todo>
