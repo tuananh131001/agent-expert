@@ -23,3 +23,4 @@ Re-run to update.
 - `grilling` — interviews you relentlessly about a plan, decision, or idea until you share an understanding. It works through the decisions as a design tree, asking one round of numbered questions at a time, each with a recommended answer
 - `grill-me` — manual-only shortcut that runs `grilling` (the model can't invoke it on its own)
 - `podcast-to-article` — turns a podcast episode (Spotify / Apple / RSS / audio link) into a long-form article as PDF + EPUB. Transcribes locally with Whisper; needs `python3`, `ffmpeg`, `pandoc`, `pdftoppm` (poppler) and `agent-browser`
+- `teach` — manual-only tutor that turns the current directory into a learning workspace across sessions: a mission, curated resources, HTML lessons and reference sheets, and learning records that track progress
