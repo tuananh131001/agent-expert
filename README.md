@@ -24,3 +24,4 @@ Re-run to update.
 - `grill-me` — manual-only shortcut that runs `grilling` (the model can't invoke it on its own)
 - `podcast-to-article` — turns a podcast episode (Spotify / Apple / RSS / audio link) into a long-form article as PDF + EPUB. Transcribes locally with Whisper; needs `python3`, `ffmpeg`, `pandoc`, `pdftoppm` (poppler) and `agent-browser`
 - `teach` — manual-only tutor that turns the current directory into a learning workspace across sessions: a mission, curated resources, HTML lessons and reference sheets, and learning records that track progress
+- `write-down` — manual-only handoff that compacts the current conversation into a document in the OS temp directory for a fresh agent to pick up, with suggested skills and secrets redacted. Pass what the next session is for to tailor it
