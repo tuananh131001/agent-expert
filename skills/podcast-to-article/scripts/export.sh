@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-# Export an article HTML file to PDF (headless Chromium via agent-browser) and EPUB (pandoc).
+# Export an article HTML file to PDF (headless Chromium via agent-browser), EPUB and Markdown (pandoc).
 # Usage: export.sh <article.html> [author/byline for EPUB metadata]
-# Writes <article>.pdf and <article>.epub next to the HTML.
+# Writes <article>.pdf, <article>.epub and <article>.md next to the HTML.
 set -euo pipefail
 HTML="$(realpath "$1")"; AUTHOR="${2:-}"
 BASE="${HTML%.html}"
+SCRIPTS="$(cd "$(dirname "$0")" && pwd)"
 TITLE=$(grep -oP '(?<=<title>).*?(?=</title>)' "$HTML" | head -1)
 
 agent-browser open "file://$HTML" >/dev/null
@@ -24,5 +25,10 @@ pandoc "$TMP" -o "$BASE.epub" --metadata title="$TITLE" ${AUTHOR:+--metadata aut
   --metadata lang=en --toc --split-level=2
 rm -f "$TMP"
 
+# GitHub-flavoured Markdown, keeping the masthead; markdown.lua maps the template's
+# callout boxes, notes and definition lists onto plain Markdown.
+pandoc "$HTML" -f html -t gfm --wrap=none --lua-filter "$SCRIPTS/markdown.lua" -o "$BASE.md"
+
 echo "PDF:  $BASE.pdf ($(pdfinfo "$BASE.pdf" 2>/dev/null | awk '/Pages/{print $2}') pages)"
 echo "EPUB: $BASE.epub"
+echo "MD:   $BASE.md"

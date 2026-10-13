@@ -1,9 +1,9 @@
 ---
 name: podcast-to-article
-description: Turn a podcast episode into a readable long-form article exported as PDF and EPUB. Given a Spotify, Apple Podcasts, RSS, or direct audio link, it finds the public audio through the show's RSS feed, transcribes it locally with Whisper, writes an article that follows the episode's structure, and exports it. Use this whenever the user shares a podcast or episode link and wants it as text, transcribed, written up, turned into an article, blog post, ebook, PDF, or EPUB, or wants to "read instead of listen", even if they don't say "article".
+description: Turn a podcast episode into a readable long-form article exported as PDF, EPUB and Markdown. Given a Spotify, Apple Podcasts, RSS, or direct audio link, it finds the public audio through the show's RSS feed, transcribes it locally with Whisper, writes an article that follows the episode's structure, and exports it. Use this whenever the user shares a podcast or episode link and wants it as text, transcribed, written up, turned into an article, blog post, ebook, PDF, EPUB, or Markdown, or wants to "read instead of listen", even if they don't say "article".
 ---
 
-# Podcast → Article (PDF + EPUB)
+# Podcast → Article (PDF + EPUB + Markdown)
 
 The pipeline has four stages: **find audio → transcribe → write the article → export**. Stages 1, 2 and 4 are scripted. Stage 3 is the real work.
 
@@ -51,14 +51,14 @@ Tell the user briefly up front that the article will be an adaptation in your ow
 
 Name the file after the episode in kebab-case, e.g. `stark-warning-former-ai-doomer.html`.
 
-## 4. Export to PDF and EPUB
+## 4. Export to PDF, EPUB and Markdown
 
 ```bash
 scripts/export.sh path/to/article.html "Adapted from <Show Name>"
 ```
 
-This produces `article.pdf` using headless Chromium via `agent-browser` and `article.epub` using pandoc, with a table of contents split at `<h2>`. Then render page 1 of the PDF to an image (`pdftoppm -png -r 50 -f 1 -l 1`) and look at it to catch layout problems before reporting back.
+This produces `article.pdf` using headless Chromium via `agent-browser` `article.epub` using pandoc, with a table of contents split at `<h2>`, and `article.md` (GitHub-flavoured Markdown) using pandoc with `scripts/markdown.lua`, which turns callout boxes into blockquotes, definition lists into `**Term** — definition` lines, and the closing note into an italic footer. Then render page 1 of the PDF to an image (`pdftoppm -png -r 50 -f 1 -l 1`) and look at it to catch layout problems before reporting back.
 
 ## Report back
 
-Give the paths to the PDF and EPUB (the HTML source sits next to them), the episode identified, and the transcription model used. Note anything uncertain, such as names you couldn't resolve or a low-accuracy model, plus any claims you made sure to attribute. Keep it short.
+Give the paths to the PDF, EPUB and Markdown files (the HTML source sits next to them), the episode identified, and the transcription model used. Note anything uncertain, such as names you couldn't resolve or a low-accuracy model, plus any claims you made sure to attribute. Keep it short.
