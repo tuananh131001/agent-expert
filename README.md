@@ -19,6 +19,7 @@ Re-run to update.
 
 ## Skills
 
+- `break-down-spec` — manual-only skill that breaks a plan, spec, or the current conversation into tracer-bullet tickets (vertical slices, with expand–contract for wide refactors), each declaring its blocking edges, and publishes them to the tracker: one file per ticket locally, or issues with native blocking links on GitHub, Linear, etc.
 - `code-review` — reviews the diff since a fixed point (commit, branch, tag) on two separate axes run as parallel sub-agents: Standards (the repo's documented coding standards plus a baseline of Fowler code smells) and Spec (does it match the originating issue or spec)
 - `create-plan` — writes `docs/<task-name>/PLAN.md` (Goal, Tasks, Key Results)
 - `domain-modeling` — builds and sharpens a project's domain model as you design: challenges terms, invents edge-case scenarios, and writes resolved terms to `GLOSSARY.md` and decisions to ADRs in `docs/adr/` as they crystallise
