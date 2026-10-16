@@ -28,4 +28,5 @@ Re-run to update.
 - `prototype` — builds throwaway code to answer a design question: a single shareable HTML file that walks a state model through hard cases, or several radically different UI variations on one route switchable from a floating bar
 - `research` — sends a background agent to investigate a question against primary sources and write the cited findings to a Markdown file in the repo
 - `teach` — manual-only tutor that turns the current directory into a learning workspace across sessions: a mission, curated resources, HTML lessons and reference sheets, and learning records that track progress
+- `to-spec` — manual-only skill that turns the current conversation into a spec (problem, solution, user stories, implementation and testing decisions, out of scope) without interviewing you, and publishes it to the project issue tracker with the `ready-for-agent` label
 - `write-down` — manual-only handoff that compacts the current conversation into a document in the OS temp directory for a fresh agent to pick up, with suggested skills and secrets redacted. Pass what the next session is for to tailor it
