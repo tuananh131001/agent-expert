@@ -21,8 +21,10 @@ Re-run to update.
 
 - `code-review` — reviews the diff since a fixed point (commit, branch, tag) on two separate axes run as parallel sub-agents: Standards (the repo's documented coding standards plus a baseline of Fowler code smells) and Spec (does it match the originating issue or spec)
 - `create-plan` — writes `docs/<task-name>/PLAN.md` (Goal, Tasks, Key Results)
+- `domain-modeling` — builds and sharpens a project's domain model as you design: challenges terms, invents edge-case scenarios, and writes resolved terms to `GLOSSARY.md` and decisions to ADRs in `docs/adr/` as they crystallise
 - `grilling` — interviews you relentlessly about a plan, decision, or idea until you share an understanding. It works through the decisions as a design tree, asking one round of numbered questions at a time, each with a recommended answer
 - `grill-me` — manual-only shortcut that runs `grilling` (the model can't invoke it on its own)
+- `grill-with-docs` — manual-only shortcut that runs `grilling` together with `domain-modeling`, so the interview writes the glossary and ADRs as it goes
 - `podcast-to-article` — turns a podcast episode (Spotify / Apple / RSS / audio link) into a long-form article as PDF + EPUB + Markdown. Transcribes locally with Whisper; needs `python3`, `ffmpeg`, `pandoc`, `pdftoppm` (poppler) and `agent-browser`
 - `pr` — writes a PR body from a template: a Summary shown as a diagram, diff sketch or tree, before/after Evidence, and Merge Danger (one-way or two-way door, blast radius). Adapted from Humanlayer's `show-me` skill
 - `prototype` — builds throwaway code to answer a design question: a single shareable HTML file that walks a state model through hard cases, or several radically different UI variations on one route switchable from a floating bar
